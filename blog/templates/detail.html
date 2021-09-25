@@ -16,7 +16,7 @@
     <br>
 
     <span class="badge rounded-pill bg-light text-dark">
-        <p style="color:green">
+        <p style="color:red">
             {% for hashtag in hashtags.all %}
             #{{hashtag}}
             {% endfor %}</p>
@@ -26,8 +26,8 @@
     <br>
 
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <button type="button" class="btn btn-success"><a href="{% url 'edit' blog.id %}" class="link-light">수정하기</a></button>
-        <button type="button" class="btn btn-warning"><a href="{% url 'delete' blog.id %}" class="link-dark">삭제하기</a></button>
+        <button type="button" class="btn btn-danger"><a href="{% url 'edit' blog.id %}" class="link-light">수정하기</a></button>
+        <button type="button" class="btn btn-light"><a href="{% url 'delete' blog.id %}" class="link-dark">삭제하기</a></button>
     </div>
 
     <br>
@@ -51,7 +51,7 @@
     </ul>
 
     <hr>
-    <button type="button" class="btn btn-success"><a class="btn btn-default" href = "{% url 'add_comment_to_post' blog.id %}">댓글달기</a></button>
+    <button type="button" class="btn btn-danger"><a class="btn btn-default" href = "{% url 'add_comment_to_post' blog.id %}">댓글달기</a></button>
 
     <br>
     <br>

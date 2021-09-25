@@ -1,4 +1,4 @@
-"""sessionsg URL Configuration
+"""ytblog URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 import blog.views as blog
+import account.views as account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,7 @@ urlpatterns = [
     path('blog/update/<int:blog_id>', blog.update, name="update"),
     path('blog/delete/<int:blog_id>', blog.delete, name="delete"),
     path('blog/comment/<int:blog_id>', blog.add_comment_to_post, name= "add_comment_to_post"),
+    path('account/login', account.login_view, name = "login"),
+    path('account/logout', account.logout_view, name = "logout"),
+    path('account/register', account.register_view, name = "register"),
 ]
