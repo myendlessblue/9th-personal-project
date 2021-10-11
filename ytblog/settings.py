@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k0m_kqabic1gu963j+z8l2_%w_&pf_yq=0o06^ou3!&-btsdg$'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','k0m_kqabic1gu963j+z8l2_%w_&pf_yq=0o06^ou3!&-btsdg$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'account.CustomUser'
 # Application definition
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,3 +126,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# static파일의 현재 위치 설명하기
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog', 'static')
+]
+
+#static 파일이 어디로 모일 것인지 알려주기
+STATIC_ROOT = os.path.join(BASE_DIR, 'youtubeblog/blog/static')
+
+#media 파일이 어디로 모일 지 알려주기
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+#홈페이지 이름/media/파일 이름 url

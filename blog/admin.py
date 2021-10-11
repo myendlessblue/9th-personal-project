@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Blog, Comment, HashTag
+from .models import Blog, HashTag, Comment
 # *는 all 의 의미로 사용된다 Blog, Comment
 
 admin.site.register(Blog)

@@ -11,6 +11,7 @@ class HashTag(models.Model):
 class Blog(models.Model) :
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    image = models.ImageField(upload_to='images/', null = True)
     contents = models.TextField()
     hashtag = models.ManyToManyField(HashTag)
 
@@ -26,5 +27,5 @@ class Comment(models.Model):
     def apporve(self):
         self.save()
     
-    def __str_(self):
+    def __str__(self):
         return self.comment_text

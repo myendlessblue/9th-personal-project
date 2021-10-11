@@ -63,6 +63,12 @@ def add_comment_to_post(request, blog_id):
             comment.post = blog
             comment.save()
             return redirect('detail', blog_id)
+
     else:
         form = CommentForm()
     return render(request, 'add_comment_to_post.html', {'form' : form})
+
+
+def myyoutube(request):
+    blog = Blog.objects #쿼리셋!
+    return render(request, 'myyoutube.html', {'blogs':blog})

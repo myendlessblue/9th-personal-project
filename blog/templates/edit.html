@@ -4,5 +4,8 @@
     {% csrf_token %}
     <p>제목 : <input type="text" name="title" id="" value = "{{ blog.title }}"></p>
     본문: <textarea name="contents" id="" cols="30" rows="10">{{ blog.contents }}</textarea>
+    <br>
+
+    <br>
     <button type="submit">제출</button>
 </form>
