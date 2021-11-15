@@ -8,7 +8,7 @@ class HashTag(models.Model):
     def __str__(self):
         return self.hashtag_name
 
-class Blog(models.Model) :
+class Blog(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     image = models.ImageField(upload_to='images/', null = True)
